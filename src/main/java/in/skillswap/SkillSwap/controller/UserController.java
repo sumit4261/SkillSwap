@@ -3,6 +3,7 @@ package in.skillswap.SkillSwap.controller;
 import in.skillswap.SkillSwap.dto.UserRequestDto;
 import in.skillswap.SkillSwap.dto.UserResponseDto;
 import in.skillswap.SkillSwap.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class UserController {
     // Create User
     @PostMapping
     public UserResponseDto createUser(
-            @RequestBody UserRequestDto userRequestDto
+           @Valid @RequestBody UserRequestDto userRequestDto
     ) {
 
         UserResponseDto response =
