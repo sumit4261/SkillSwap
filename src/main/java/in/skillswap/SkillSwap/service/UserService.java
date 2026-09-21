@@ -2,6 +2,7 @@ package in.skillswap.SkillSwap.service;
 
 import in.skillswap.SkillSwap.dto.UserRequestDto;
 import in.skillswap.SkillSwap.dto.UserResponseDto;
+import in.skillswap.SkillSwap.exception.DuplicateEmailException;
 import in.skillswap.SkillSwap.model.User;
 import in.skillswap.SkillSwap.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,10 @@ public class UserService {
     }
 
     public UserResponseDto createUser(UserRequestDto userRequestDto){
+
+        if(userRepository.findByEmail(userRequestDto.getEmail()).isPresent()){
+            throw new DuplicateEmailException("Email Already registered");
+        }
 
         User user = new User();
 
